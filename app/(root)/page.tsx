@@ -1,6 +1,8 @@
 import React from "react";
 import SearchForm from "@/components/SearchForm";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
+import { STARTUPS_QUERIES } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 const Page = async ({
   searchParams,
@@ -8,19 +10,12 @@ const Page = async ({
   searchParams: Promise<[query?: string]>;
 }) => {
   const query = (await searchParams).query;
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: { _id: 1, name: "Seif" },
-      _id: 1,
-      description: "This is a description",
-      image:
-        "https://totempool.com/wp-content/uploads/2019/08/Startup_a4171014e8d4cfe295a3db794f5389d6_2000-930x620.jpg",
-      category: "Robots",
-      title: "We Robots",
-    },
-  ];
+  const params = { search: query || null };
+  const { data: posts } = await sanityFetch({
+    query: STARTUPS_QUERIES,
+    params,
+  });
+
   return (
     <>
       <section className={"pink_container"}>
@@ -48,6 +43,7 @@ const Page = async ({
           )}
         </ul>
       </section>
+      <SanityLive />
     </>
   );
 };

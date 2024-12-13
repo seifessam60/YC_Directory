@@ -872,7 +872,7 @@
         },
         "optional": true
       },
-      "avatar": {
+      "image": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

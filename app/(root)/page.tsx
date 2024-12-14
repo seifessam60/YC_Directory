@@ -1,4 +1,3 @@
-import React from "react";
 import SearchForm from "@/components/SearchForm";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import { STARTUPS_QUERIES } from "@/sanity/lib/queries";
